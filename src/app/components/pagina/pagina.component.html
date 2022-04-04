@@ -1,0 +1,27 @@
+
+<app-slider [nombre]="'Página de pruebas'"></app-slider>
+
+<div class="center">
+  <section id='content'>
+
+		<h1 class="subheader">Página de pruebas</h1>
+
+		<div *ngIf= "nombre || apellido; then siHayParametros else usuarioAnonimo">
+		</div>
+		<!-- <div *ngIf="!nombre || !apellido">
+		  <h2>Bienvendio Usuario anónimo</h2>
+		</div> -->
+
+		<ng-template #siHayParametros>
+		  <h2>Bienvenido: {{ nombre }} {{ apellido }}</h2>
+		</ng-template>
+
+		<!-- Esta es una manera de simular un else en HTML -->
+		<ng-template #usuarioAnonimo>
+		  <h2>Bienvendio Usuario anónimo</h2>
+		</ng-template>
+
+		<button (click)="redireccion()" type="button" name="button">Llévame al formulario</button>
+
+  </section>
+</div>

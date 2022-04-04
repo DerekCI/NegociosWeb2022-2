@@ -1,0 +1,26 @@
+<div class="loading" *ngIf='!articles'>
+  Cargando....
+</div>
+
+<div class="loading" *ngIf='articles && articles.length == 0'>
+  No hay artículos para mostrar, inténtelo más tarde
+</div>
+
+<div id="articles">
+    <article class="article-item" id="article-template" *ngFor="let article of articles">
+      <div class="image-wrap">
+      	<!-- Las imagenes las tomo desde la url del backend -->
+        <img src="{{url + 'get-image/' + article.image}}" alt="{{article.title}}" *ngIf="article.image">
+        <img src="assets/images/default.png" alt="{{article.title}}" *ngIf="!article.image">
+      </div>
+
+      <h2>{{article.title}}</h2>
+      <span class="date">
+        <!-- Usamos los pipes de Angular momento para que se muestre en español y hace cuánto tiempo -->
+        {{article.date | amLocale: 'es' | amTimeAgo }}
+      </span>
+      <!-- Me redirige al link /blog/articulo/article._id --> 
+      <a [routerLink]="['/blog/articulo', article._id]">Leer más</a>
+      <div class="clearfix"></div>
+    </article>
+  </div>
